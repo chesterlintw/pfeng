@@ -79,7 +79,7 @@ struct pfeng_eth {
 	u8				*addr;
 	u8				fixed_link;
 	u32				max_speed;
-	int				intf_mode;
+	phy_interface_t			intf_mode;
 	u32				emac_id;
 	struct device_node		*dn;
 	struct clk			*tx_clk;
@@ -132,9 +132,7 @@ struct pfeng_ndev {
 	struct device			*dev;
 	struct net_device		*netdev;
 	struct phylink			*phylink;
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,4,0)
 	struct phylink_config		phylink_cfg;
-#endif
 	struct mii_bus			*mii_bus;
 	void				*emac_regs;
 	u32				emac_speed;

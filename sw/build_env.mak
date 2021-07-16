@@ -29,9 +29,9 @@
 #Build profile, possible values: release, debug, profile, coverage
 export BUILD_PROFILE?=release
 #Build architecture/variant string, possible values: x86, armv7le, etc...
-export PLATFORM?=aarch64le
+export PLATFORM?=aarch64
 #Target os, possible values: QNX, LINUX
-export TARGET_OS?=QNX
+export TARGET_OS?=LINUX
 #Target HW, possible values: s32g
 export TARGET_HW ?= s32g
 #NULL argument checks. Enable when debugging is needed. 1 - enable, 0 - disable.

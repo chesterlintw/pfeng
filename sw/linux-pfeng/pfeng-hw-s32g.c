@@ -87,8 +87,8 @@ static int init_reserved_memory(struct device *dev)
 	}
 	dev_info(dev, "Found reserved memory at p0x%llx size 0x%llx\n", res.start, res.end - res.start + 1);
 
-	ret = dmam_declare_coherent_memory(dev, res.start, res.start,
-		res.end - res.start + 1, DMA_MEMORY_EXCLUSIVE);
+	ret = dma_declare_coherent_memory(dev, res.start, res.start,
+		res.end - res.start + 1);
 
 	return ret;
 #endif
@@ -378,8 +378,8 @@ static int create_config_from_dt(struct pfeng_priv *priv)
 			eth->max_speed = SPEED_2500;
 
 		/* Interface mode */
-		eth->intf_mode = of_get_phy_mode(child);
-		if (eth->intf_mode < 0)
+		ret = of_get_phy_mode(child, &eth->intf_mode);
+		if (ret)
 			/* for non managable interface */
 			eth->intf_mode = PHY_INTERFACE_MODE_INTERNAL;
 		dev_dbg(&pdev->dev, "interface mode: %d", eth->intf_mode);
